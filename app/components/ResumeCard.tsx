@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import ScoreCircle from "./ScoreCircle"
 
 
-const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath } }: { resume: Resume }) => {
+const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath, resumeUrl } }: { resume: Resume }) => {
     return (
         <Link to={`/resume/${id}`} className="resume-card animate-in fade-in duration-1000">
             <div className="resume-card-header">
@@ -14,11 +14,13 @@ const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath }
                     <ScoreCircle score={feedback.overallScore} />
                 </div>
             </div>
-            <div className="gradient-border animate-in fade-in duration-1000">
-                <div className="w-full h-full">
-                    <img src={imagePath} alt="resume" className="w-full h-[350px] max-sm:h-[250px] object-cover object-top" />
+            {resumeUrl && (
+                <div className="gradient-border animate-in fade-in duration-1000">
+                    <div className="w-full h-full">
+                        <img src={resumeUrl} alt="resume" className="w-full h-[350px] max-sm:h-[250px] object-cover object-top" />
+                    </div>
                 </div>
-            </div>
+            )}
         </Link>
     )
 }
